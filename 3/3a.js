@@ -1,4 +1,3 @@
-const { parse } = require('path/posix');
 const { getDataFromTxtFile } = require('./dataGetter.js');
 
 (async () => {
