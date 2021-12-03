@@ -9,21 +9,18 @@ const DIRECTIONS = {
 const INITIAL_COUNT_VALUE = 0;
 (async () => {
   const data = await getDataFromTxtFile();
-  const formattedData = data.split('\n').map((row) => {
-    return { direction: row.split(' ')[0], value: parseInt(row.split(' ')[1]) };
-  });
 
-  const forward = formattedData
+  const forward = data
     .filter((el) => el.direction === DIRECTIONS.FORWARD)
     .reduce((total, element) => {
       return total + element.value;
     }, INITIAL_COUNT_VALUE);
-  const down = formattedData
+  const down = data
     .filter((el) => el.direction === DIRECTIONS.DOWN)
     .reduce((total, element) => {
       return total + element.value;
     }, INITIAL_COUNT_VALUE);
-  const up = formattedData
+  const up = data
     .filter((el) => el.direction === DIRECTIONS.UP)
     .reduce((total, element) => {
       return total + element.value;
