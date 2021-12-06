@@ -1,13 +1,23 @@
 const { getDataFromTxtFile } = require('./dataGetter.js');
+const getResult = (matrix, overlap) =>
+  matrix.reduce(
+    (total, row) =>
+      total +
+      row.reduce(
+        (rowCount, number) => (number >= overlap ? rowCount + 1 : rowCount),
+        0
+      ),
+    0
+  );
 
 (async () => {
   const data = await getDataFromTxtFile();
 
   const matrix = [];
 
-  const { byX, byY } = data;
+  const { vertical, horizontal } = data;
 
-  byY.forEach(({ y: rowLevel, originX, destinationX }) => {
+  horizontal.forEach(({ y: rowLevel, originX, destinationX }) => {
     matrix[rowLevel] =
       typeof matrix[rowLevel] === 'undefined' ? [] : matrix[rowLevel];
 
@@ -22,7 +32,7 @@ const { getDataFromTxtFile } = require('./dataGetter.js');
     }
   });
 
-  byX.forEach(({ x: columnLevel, originY, destinationY }) => {
+  vertical.forEach(({ x: columnLevel, originY, destinationY }) => {
     const min = Math.min(originY, destinationY);
     const max = Math.max(originY, destinationY);
 
@@ -36,12 +46,5 @@ const { getDataFromTxtFile } = require('./dataGetter.js');
     }
   });
 
-  let result = 0;
-  matrix.forEach((row) =>
-    row.forEach((el) => {
-      result = typeof el === 'number' && el > 1 ? result + 1 : result;
-    })
-  );
-
-  console.log(result);
+  console.log('Result: ', getResult(matrix, 2));
 })();
