@@ -10,9 +10,15 @@ const getMedian = (data) => {
   return sorted[middle];
 };
 
-const getFuelCost = (crabPositions, median) => {
+const getFuelCost = (crabPositions, median, part) => {
   return crabPositions.reduce(
-    (total, currentCrab) => (total += Math.abs(median - currentCrab)),
+    (total, currentCrab) =>
+      (total +=
+        part === 'a'
+          ? Math.abs(median - currentCrab) // part a
+          : (Math.abs(median - currentCrab) * // part b
+              (Math.abs(median - currentCrab) + 1)) /
+            2),
     0
   );
 };
@@ -20,13 +26,13 @@ const getFuelCost = (crabPositions, median) => {
 const isOptimalCost = (cost, compareCost1, compareCost2) =>
   cost < compareCost1 && cost < compareCost2;
 
-const getResult = (data) => {
+const getResult = (data, part = 'a') => {
   const median = getMedian(data);
   const costs = {};
 
-  costs[median] = getFuelCost(data, median);
-  costs[median - 1] = getFuelCost(data, median - 1);
-  costs[median + 1] = getFuelCost(data, median + 1);
+  costs[median] = getFuelCost(data, median, part);
+  costs[median - 1] = getFuelCost(data, median - 1, part);
+  costs[median + 1] = getFuelCost(data, median + 1, part);
 
   if (isOptimalCost(costs[median], costs[median - 1], costs[median + 1])) {
     return costs[median];
@@ -41,7 +47,7 @@ const getResult = (data) => {
   while (costs[medianToCheck] < costs[prev]) {
     prev = medianToCheck;
     medianToCheck += incr;
-    costs[medianToCheck] = getFuelCost(data, medianToCheck);
+    costs[medianToCheck] = getFuelCost(data, medianToCheck, part);
   }
 
   return costs[prev];
