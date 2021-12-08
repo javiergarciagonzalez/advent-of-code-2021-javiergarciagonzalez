@@ -1,4 +1,4 @@
-# Day 7
+# Day 8
 ## Statement
 ### --- Day 8: Seven Segment Search ---
 
@@ -151,12 +151,12 @@ For each entry, determine all of the wire/segment connections and decode the fou
 ## Run
 ### Part 1
 ```sh
-node 7a.js
+node 8a.js
 ```
 ### Part 2
 ```sh
-node 7b.js
+node 8b.js
 ```
 ## Reference
-[Advent of code - Day 7](https://adventofcode.com/2021/day/7)
+[Advent of code - Day 8](https://adventofcode.com/2021/day/8)
 
