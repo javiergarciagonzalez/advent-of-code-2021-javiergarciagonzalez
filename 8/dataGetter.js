@@ -12,6 +12,19 @@ const getDataFromTxtFile = async () => {
   return data.split('\n').map((row) => row.split(' | ')[1].split(' '));
 };
 
+const getDataFromTxtFileForPart2 = async () => {
+  const data = await fs.readFile('./inputData.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    return data;
+  });
+
+  return data.split('\n');
+};
+
 module.exports = {
   getDataFromTxtFile,
+  getDataFromTxtFileForPart2,
 };
