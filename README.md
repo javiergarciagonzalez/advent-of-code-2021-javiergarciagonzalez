@@ -4,9 +4,9 @@ This repository will track my progress during this challenge.
 
 ## Progress
 
-8 / 25 days
+9 / 25 days
 
-![](https://progress-bar.dev/32/)
+![](https://progress-bar.dev/36/)
 
 ## Reference
 [Advent of code](https://adventofcode.com/2021)
