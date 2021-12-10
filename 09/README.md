@@ -1,4 +1,4 @@
-# Day 8
+# Day 9
 ## Statement
 ### --- Day 9: Smoke Basin ---
 
